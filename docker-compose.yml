@@ -1,0 +1,5 @@
+market-research:
+  build: .
+  restart: always
+  ports:
+      - "80:80"
