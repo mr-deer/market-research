@@ -24,7 +24,7 @@ export const simulateRandomProcess = (lambda, T_n ) => {
 export const simulatePseudoProcess = (T) => {
   let pseudoProcess = [];
   for(let i = 0; i < T; i++) {
-    pseudoProcess.push((Math.random() - 0.5));
+    pseudoProcess.push(Math.random());
   }
   return pseudoProcess;
 }

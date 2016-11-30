@@ -21,27 +21,19 @@ app.get('/api/equilibrium', (req, res) => {
   });
 })
 
-app.get('/deficit', (req, res) => {
+app.get('/api/deficit', (req, res) => {
   const deficitMarket = simulateTradeDeficitMarket();
-  deficitMarket.P_t = deficitMarket.P_t.map(number => String(number).replace('.', ','));
-  deficitMarket.Q_t = deficitMarket.Q_t.map(number => String(number).replace('.', ','))
-  res.render('result', {
+  res.status(200).json({
     Q_t: deficitMarket.Q_t,
-    q_length: deficitMarket.Q_t.length,
-    P_t: deficitMarket.P_t,
-    p_length: deficitMarket.P_t.length
+    P_t: deficitMarket.P_t
   })
 })
 
-app.get('/overstock', (req, res) => {
+app.get('/api/overstock', (req, res) => {
   const overstockMarket = simulateOverstockMarket();
-  overstockMarket.P_t = overstockMarket.P_t.map(number => String(number).replace('.', ','));
-  overstockMarket.Q_t = overstockMarket.Q_t.map(number => String(number).replace('.', ','))
-  res.render('result', {
+  res.status(200).json({
     Q_t: overstockMarket.Q_t,
-    q_length: overstockMarket.Q_t.length,
     P_t: overstockMarket.P_t,
-    p_length: overstockMarket.P_t.length
   })
 })
 
