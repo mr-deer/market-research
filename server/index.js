@@ -12,16 +12,13 @@ app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-app.get('/equilibrium', (req, res) => {
+app.get('/api/equilibrium', (req, res) => {
   const equilibriumMarket = simulateEquilibriumMarket();
-  equilibriumMarket.P_t = equilibriumMarket.P_t.map(number => String(number).replace('.', ','));
-  equilibriumMarket.Q_t = equilibriumMarket.Q_t.map(number => String(number).replace('.', ','))
-  res.render('result', {
+
+  res.status(200).json({
     Q_t: equilibriumMarket.Q_t,
-    q_length: equilibriumMarket.Q_t.length,
     P_t: equilibriumMarket.P_t,
-    p_length: equilibriumMarket.P_t.length
-  })
+  });
 })
 
 app.get('/deficit', (req, res) => {
