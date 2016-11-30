@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-preset-latest": "^6.16.0",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "babel-core": "^6.18.2",
+    "express": "^4.14.0",
     "material-ui": "^0.16.4",
+    "nodemon": "^1.11.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
@@ -17,6 +21,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "server": "nodemon server.js",
     "push-docker": "npm run build && docker build -t niceday/market-research . && docker push niceday/market-research"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
   }
 }
