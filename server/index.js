@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import {
   simulateRandomProcess,
   simulateEquilibriumMarket,
@@ -8,29 +9,38 @@ import {
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-app.get('/api/equilibrium', (req, res) => {
-  const equilibriumMarket = simulateEquilibriumMarket();
-
+app.post('/api/equilibrium', (req, res) => {
+  const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
+  const equilibriumMarket = simulateEquilibriumMarket(
+    parseFloat(R), parseFloat(Q_m), parseFloat(a), parseFloat(T), parseFloat(P_0), parseFloat(P_1), parseFloat(P_2), parseFloat(Q_0), parseFloat(tau)
+  );
   res.status(200).json({
     Q_t: equilibriumMarket.Q_t,
     P_t: equilibriumMarket.P_t,
   });
 })
 
-app.get('/api/deficit', (req, res) => {
-  const deficitMarket = simulateTradeDeficitMarket();
+app.post('/api/deficit', (req, res) => {
+  const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
+  const deficitMarket = simulateTradeDeficitMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
   res.status(200).json({
     Q_t: deficitMarket.Q_t,
-    P_t: deficitMarket.P_t
+    P_t: deficitMarket.P_t,
+    count: deficitMarket.count
   })
 })
 
-app.get('/api/overstock', (req, res) => {
-  const overstockMarket = simulateOverstockMarket();
+app.post('/api/overstock', (req, res) => {
+  const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
+  const overstockMarket = simulateOverstockMarket(
+    parseFloat(R), parseFloat(Q_m), parseFloat(a), parseFloat(T), parseFloat(P_0), parseFloat(P_1), parseFloat(P_2), parseFloat(Q_0), parseFloat(tau)
+  );
   res.status(200).json({
     Q_t: overstockMarket.Q_t,
     P_t: overstockMarket.P_t,

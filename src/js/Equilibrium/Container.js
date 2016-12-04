@@ -12,7 +12,13 @@ export default class Equilibrium extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/equilibrium')
+    fetch('http://localhost:3000/api/equilibrium', {
+      method: 'post',
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      body: `R=${50}&Q_m=${4}&a=${0.4}&T=${600}&P_0=${7}&P_1=${3}&P_2=${0.1}&Q_0=${0}&tau=${10}`
+    })
       .then(response => response.ok ? response.json() : console.error('Error while fetching equilibrium'))
       .then(equilibrium => this.setState({ Qt: equilibrium.Q_t, Pt: equilibrium.P_t }));
   }
