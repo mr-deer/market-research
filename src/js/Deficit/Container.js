@@ -8,16 +8,16 @@ export default class Deficit extends React.Component {
     this.state = {
       Qt: [],
       Pt: [],
-      count: 5,
+      count: 3,
       isGraphs: false,
       R: 50,
-      Q_m: [4,5,4,6,7],
+      Q_m: [4,5,5],
       a: 0.4,
       T: 200,
-      P_0: [7,8,4,3,2],
-      P_1: [3,3,4,5,6],
-      P_2: [0.1,0.1,0.2,0.3,0.2],
-      Q_0: [0,0,0,0,0],
+      P_0: [7,8,6],
+      P_1: [3,3,4],
+      P_2: [0.1,0.1,0.2],
+      Q_0: [0,0,0],
       tau: 20
     }
   }

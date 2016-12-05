@@ -17,9 +17,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/equilibrium', (req, res) => {
   const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
-  const equilibriumMarket = simulateEquilibriumMarket(
-    parseFloat(R), parseFloat(Q_m), parseFloat(a), parseFloat(T), parseFloat(P_0), parseFloat(P_1), parseFloat(P_2), parseFloat(Q_0), parseFloat(tau)
-  );
+  const equilibriumMarket = simulateEquilibriumMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
   res.status(200).json({
     Q_t: equilibriumMarket.Q_t,
     P_t: equilibriumMarket.P_t,
@@ -31,19 +29,16 @@ app.post('/api/deficit', (req, res) => {
   const deficitMarket = simulateTradeDeficitMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
   res.status(200).json({
     Q_t: deficitMarket.Q_t,
-    P_t: deficitMarket.P_t,
-    count: deficitMarket.count
+    P_t: deficitMarket.P_t
   })
 })
 
 app.post('/api/overstock', (req, res) => {
   const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
-  const overstockMarket = simulateOverstockMarket(
-    parseFloat(R), parseFloat(Q_m), parseFloat(a), parseFloat(T), parseFloat(P_0), parseFloat(P_1), parseFloat(P_2), parseFloat(Q_0), parseFloat(tau)
-  );
+  const overstockMarket = simulateOverstockMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
   res.status(200).json({
     Q_t: overstockMarket.Q_t,
-    P_t: overstockMarket.P_t,
+    P_t: overstockMarket.P_t
   })
 })
 
