@@ -13,7 +13,7 @@ export default class Deficit extends React.Component {
       R: 50,
       Q_m: [4,5,5],
       a: 0.4,
-      T: 200,
+      T: 400,
       P_0: [7,8,6],
       P_1: [3,3,4],
       P_2: [0.1,0.1,0.2],
@@ -95,18 +95,40 @@ export default class Deficit extends React.Component {
     let datasetsQt = [];
     let datasetsPt = [];
     for(let i = 0; i < count; i++) {
-       datasetsQt.push({
-         label: `${i + 1}`,
-         fillColor: "rgba(0,0,0,0)",
-         strokeColor: `rgba(${10 + (i + 50)},${0 + (i * 60)},${0 + (i * 20)}, 1)`,
-         data: this.state.Qt[i]
-       })
-       datasetsPt.push({
-         label: `${i + 1}`,
-         fillColor: "rgba(0,0,0,0)",
-         strokeColor: `rgba(${10 + (i * 35)},${60 + (i * 10)},${40 + (i * 30)}, 1)`,
-         data: this.state.Pt[i]
-       })
+      let color;
+      switch(i) {
+        case 0:
+          color = "red";
+          break;
+        case 1:
+          color = "blue";
+          break;
+        case 2:
+          color = "green";
+          break;
+        case 3:
+          color = "yellow";
+          break;
+        case 4:
+          color = "gray";
+          break;
+        default:
+          color = "black";
+          break;
+      }
+
+      datasetsQt.push({
+        label: `${i + 1}`,
+        fillColor: "rgba(0,0,0,0)",
+        strokeColor: color,
+        data: this.state.Qt[i]
+      })
+      datasetsPt.push({
+        label: `${i + 1}`,
+        fillColor: "rgba(0,0,0,0)",
+        strokeColor: color,
+        data: this.state.Pt[i]
+      })
     }
 
     const dataQt = {
@@ -172,6 +194,29 @@ export default class Deficit extends React.Component {
             </label>
           </div>
           <button onClick={this.calculate} style={styles.btn}>Calculate</button>
+        </div>
+        <div>
+          <div></div>
+          {/*
+            this.state.isGraphs ?
+            this.state.Pt[0].map((item) =>
+              <div>{item}</div>
+            ) : null
+          }
+          <div>Pt2</div>
+          {
+            this.state.isGraphs ?
+            this.state.Pt[1].map((item) =>
+              <div>{item}</div>
+            ) : null
+          }
+          <div>Pt3</div>
+          {
+            this.state.isGraphs ?
+            this.state.Pt[2].map((item) =>
+              <div>{item}</div>
+            ) : null
+        */  }
         </div>
       </div>
     )

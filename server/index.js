@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.post('/api/equilibrium', (req, res) => {
   const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
   const equilibriumMarket = simulateEquilibriumMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
+
   res.status(200).json({
     Q_t: equilibriumMarket.Q_t,
     P_t: equilibriumMarket.P_t,
@@ -27,6 +28,7 @@ app.post('/api/equilibrium', (req, res) => {
 app.post('/api/deficit', (req, res) => {
   const { R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau } = req.body;
   const deficitMarket = simulateTradeDeficitMarket(R, Q_m, a, T, P_0, P_1, P_2, Q_0, tau);
+
   res.status(200).json({
     Q_t: deficitMarket.Q_t,
     P_t: deficitMarket.P_t

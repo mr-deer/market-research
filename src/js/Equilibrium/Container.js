@@ -95,16 +95,38 @@ export default class Equilibrium extends React.Component {
     let datasetsQt = [];
     let datasetsPt = [];
     for(let i = 0; i < count; i++) {
+      let color;
+      switch(i) {
+        case 0:
+          color = "red";
+          break;
+        case 1:
+          color = "blue";
+          break;
+        case 2:
+          color = "green";
+          break;
+        case 3:
+          color = "yellow";
+          break;
+        case 4:
+          color = "gray";
+          break;
+        default:
+          color = "black";
+          break;
+      }
+
        datasetsQt.push({
          label: `${i + 1}`,
          fillColor: "rgba(0,0,0,0)",
-         strokeColor: `rgba(${10 + (i + 50)},${0 + (i * 60)},${0 + (i * 20)}, 1)`,
+         strokeColor: color,
          data: this.state.Qt[i]
        })
        datasetsPt.push({
          label: `${i + 1}`,
          fillColor: "rgba(0,0,0,0)",
-         strokeColor: `rgba(${10 + (i * 35)},${60 + (i * 10)},${40 + (i * 30)}, 1)`,
+         strokeColor: color,
          data: this.state.Pt[i]
        })
     }
